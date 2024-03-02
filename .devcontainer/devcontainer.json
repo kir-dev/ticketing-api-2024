@@ -22,7 +22,8 @@
       "extensions": [
         "Prisma.prisma",
         "eamodio.gitlens",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "rangav.vscode-thunder-client"
       ]
     }
   }
