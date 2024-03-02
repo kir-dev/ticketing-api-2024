@@ -1,15 +1,22 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { TicketsService } from './tickets.service';
-import { CreateTicketDto } from './dto/create-ticket.dto';
-import { UpdateTicketDto } from './dto/update-ticket.dto';
 
 @Controller('tickets')
 export class TicketsController {
   constructor(private readonly ticketsService: TicketsService) {}
 
   @Post()
-  create(@Body() createTicketDto: CreateTicketDto) {
-    return this.ticketsService.create(createTicketDto);
+  create(@Body() data: Prisma.TicketUncheckedCreateInput) {
+    return this.ticketsService.create(data);
   }
 
   @Get()
@@ -23,8 +30,11 @@ export class TicketsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTicketDto: UpdateTicketDto) {
-    return this.ticketsService.update(+id, updateTicketDto);
+  update(
+    @Param('id') id: string,
+    @Body() data: Prisma.TicketUncheckedUpdateInput,
+  ) {
+    return this.ticketsService.update(+id, data);
   }
 
   @Delete(':id')
