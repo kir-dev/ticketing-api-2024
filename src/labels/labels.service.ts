@@ -1,12 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Label, Prisma } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
+import { CreateLabelDto } from './dto/create-label.dto';
+import { UpdateLabelDto } from './dto/update-label.dto';
+import { Label } from './entities/label.entity';
 
 @Injectable()
 export class LabelsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: Prisma.LabelCreateInput): Promise<Label> {
+  create(data: CreateLabelDto): Promise<Label> {
     return this.prisma.label.create({ data });
   }
 
@@ -22,7 +24,7 @@ export class LabelsService {
     return label;
   }
 
-  async update(id: number, data: Prisma.LabelUpdateInput): Promise<Label> {
+  async update(id: number, data: UpdateLabelDto): Promise<Label> {
     try {
       return await this.prisma.label.update({ where: { id }, data });
     } catch {
