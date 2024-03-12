@@ -1,0 +1,34 @@
+version: '3.8'
+
+name: ticketing-api
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - ticketing-network
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13.10
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - ticketing_db_folder:/var/lib/postgresql/data
+    networks:
+      - ticketing-network
+
+volumes:
+  ticketing_db_folder:
+    external: true
+
+networks:
+  ticketing-network:
