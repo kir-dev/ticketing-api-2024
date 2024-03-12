@@ -3,9 +3,9 @@
 
 Ebben a repóban a Kir-Dev 2024-es Node.js tanfolyamán megvalósított hibajegy kezelő alkalmazás backend kódja található. Ezt az alkalmazást használhatná a körünk arra, hogy a felhasználóink itt jelezhessék, milyen hibákat, fejlesztési lehetőségeket találtak oldalainkon.
 
-Az API publikusan elérhető az alábbi címen: [https://api.ticekting.kir-dev.hu](https://api.ticekting.kir-dev.hu)
+Az API publikusan elérhető az alábbi címen: [https://api.ticketing.kir-dev.hu](https://api.ticketing.kir-dev.hu)
 
-OpenAPI specifikáció: [https://api.ticekting.kir-dev.hu/api](https://api.ticekting.kir-dev.hu/api)
+OpenAPI specifikáció: [https://api.ticketing.kir-dev.hu/api](https://api.ticketing.kir-dev.hu/api)
 
 A tanfolyam visszanézhető YouTube-on:
 
