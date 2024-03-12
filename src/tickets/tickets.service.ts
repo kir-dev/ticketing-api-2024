@@ -3,22 +3,25 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Prisma, Ticket } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
+import { CreateTicketDto } from './dto/create-ticket.dto';
+import { TicketWithLabels } from './dto/ticket-with-labels';
+import { UpdateTicketDto } from './dto/update-ticket.dto';
+import { Ticket } from './entities/ticket.entity';
 
 @Injectable()
 export class TicketsService {
   constructor(readonly prisma: PrismaService) {}
 
-  async create(data: Prisma.TicketUncheckedCreateInput): Promise<Ticket> {
+  async create(data: CreateTicketDto): Promise<Ticket> {
     return this.prisma.ticket.create({ data });
   }
 
-  async findAll(): Promise<Ticket[]> {
+  async findAll(): Promise<TicketWithLabels[]> {
     return this.prisma.ticket.findMany({ include: { labels: true } });
   }
 
-  async findOne(id: number): Promise<Ticket> {
+  async findOne(id: number): Promise<TicketWithLabels> {
     const ticket = await this.prisma.ticket.findUnique({
       where: { id },
       include: { labels: true },
@@ -29,10 +32,7 @@ export class TicketsService {
     return ticket;
   }
 
-  async update(
-    id: number,
-    data: Prisma.TicketUncheckedUpdateInput,
-  ): Promise<Ticket> {
+  async update(id: number, data: UpdateTicketDto): Promise<Ticket> {
     try {
       return await this.prisma.ticket.update({ where: { id }, data });
     } catch {
