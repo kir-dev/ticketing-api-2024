@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:postgres@localhost:5432/ticketing?schema=public"
+  url      = env("DATABASE_URL")
 }
 
 enum TicketPhase {
